@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record id="realestatex_complaint_form_view" model="ir.ui.view">
+            <field name="name">complaint.form</field>
+            <field name="model">realestatex.complaint</field>
+            <field name="arch" type="xml">
+                <form string="Complaint Form">
+                    <header>
+                        <button name="set_to_in_review_complaint" string="Set to In review" type="object" class="btn-primary" invisible="stage in ['in_review', 'solved', 'dropped']"/>
+                        <button name="set_to_in_progress_complaint" string="Set to In progress" type="object" class="btn-primary" invisible="stage in ['in_progress','solved', 'dropped']"/>
+                        <button name="close_complaint" string="Solve" type="object" class="btn-secondary" invisible="stage in ['solved', 'dropped']"/>
+                        <button name="drop_complaint" string="Drope" type="object" class="btn-secondary" invisible="stage == 'dropped'"/>
+                        <button name="print_work_order" string="Print Work Order" type="object" class="btn-secondary"/>
+                        <field name="stage" widget="statusbar" class="o_field_statusbar"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="complaint_number"/>
+                            <h1>
+                                <field name="complaint_number" placeholder="Complaint Num"/>
+                            </h1>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="email"/>
+                                <field name="description" widget="html"/>
+                            </group>
+                            <group>
+                                <field name="complaint_type"/>
+                                <field name="flat_address"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="realestatex_complaint_list_view">
+            <field name="name">complaint.list</field>
+            <field name="model">realestatex.complaint</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="complaint_number"/>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="flat_address"/>
+                    <field name="complaint_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="realestatex_complaint_action_window">
+            <field name="name">RealEstateX Complaint</field>
+            <field name="res_model">realestatex.complaint</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="RealEstateX Complaint" id="realestatex_complaint_menu_root" action="realestatex_complaint_action_window"/>
+    </data>
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="work_order_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2>Work Order</h2>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>Customer:</strong>
+                                            </td>
+                                            <td>
+                                                <t t-esc="o.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Address:</strong>
+                                            </td>
+                                            <td>
+                                                <t t-esc="o.flat_address"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Date:</strong>
+                                            </td>
+                                            <td>
+                                                <t t-esc="o.create_date"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Action Plan:</strong>
+                                            </td>
+                                            <td>
+                                                <t t-esc="o.action_plan"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_work_order_report" model="ir.actions.report">
+        <field name="name">Work Order</field>
+        <field name="model">realestatex.complaint</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">realestatex_base.work_order_report</field>
+        <field name="report_file">realestatex_base.work_order_report</field>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

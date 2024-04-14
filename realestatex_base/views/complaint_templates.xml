@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="realestatex_base.complaint_form_template" name="Complaint Form">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_title parallax s_parallax_is_fixed bg-black-50 pt24 pb24" data-vcss="001"
+                         data-snippet="s_title" data-scroll-background-ratio="1">
+                    <span class="s_parallax_bg oe_img_bg"
+                          style="background-image: url('/web/image/website.s_parallax_default_image'); background-position: 50% 0;"/>
+                    <div class="o_we_bg_filter bg-black-50"/>
+                    <div class="container">
+                        <h1>Submit a Complaint</h1>
+                    </div>
+                </section>
+                <section class="s_text_block pt40 pb40 o_colored_level " data-snippet="s_text_block">
+                    <div class="container s_allow_columns">
+                        <div class="row">
+                            <div class="col-lg-8 mt-4 mt-lg-0">
+                                <p>
+                                    Please use the form below to submit a complaint about our services. We'll do our
+                                    best to address your concerns promptly.
+                                </p>
+                                <form id="complaint_form" action="/complaint/submit" method="post"
+                                      enctype="multipart/form-data" class="o_mark_required" data-mark="*"
+                                      data-model_name="realestatex.complaint" data-success-mode="redirect"
+                                      data-success-page="/complaint/thank-you" data-pre-fill="true">
+                                    <div class="form-group">
+                                        <label for="name">Name *</label>
+                                        <input type="text" class="form-control" id="name" name="name" required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email *</label>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                               required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="flat_address">Flat Address *</label>
+                                        <input type="text" class="form-control" id="flat_address" name="flat_address"
+                                               required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="complaint_type">Complaint Type *</label>
+                                        <select class="form-control" id="complaint_type" name="complaint_type" required="">
+                                            <option value="question">Question</option>
+                                            <option value="electrical_issue">Electrical Issue</option>
+                                            <option value="heating_issue">Heating Issue</option>
+                                            <option value="other_issue">Other Issue</option>
+                                            <!-- Add more complaint types as needed -->
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description *</label>
+                                        <textarea class="form-control" id="description" rows="3" name="description" required="required"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            <div class="col-lg-4 mt-4 mt-lg-0">
+                                <ul class="list-unstyled mb-0 ps-2">
+                                    <li>RealEstateX</li>
+                                    <li>
+                                        <i class="fa fa-map-marker fa-fw me-2"/>
+                                        <span class="o_force_ltr">123 Fake Street, 12345 Berlin, Germany</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone fa-fw me-2"/>
+                                        <span class="o_force_ltr">+49 123 456 789</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-1x fa-fw fa-envelope me-2"/>
+                                        <span>info@realestatex.com</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+</odoo>
